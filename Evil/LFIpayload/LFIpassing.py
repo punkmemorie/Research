@@ -2,7 +2,7 @@ import requests
 import sys
 import re
 import os
-
+print("for i in $(cat LFI\ payloads.txt); do echo $i;python3 req.py http://10.129.168.39/administrative $i;done ")
 url = sys.argv[1]
 payload = sys.argv[2]
 
